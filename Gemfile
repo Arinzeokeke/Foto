@@ -33,6 +33,17 @@ gem 'acts_as_list', '~> 0.7.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#paperclip  for image upload
+gem "paperclip", "~> 5.0.0"
+
+#my other additions
+gem 'jquery-turbolinks'
+gem 'simple_form'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'devise'
+gem 'kaminari'
+gem 'acts_as_votable', '~> 0.10.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
