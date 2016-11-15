@@ -1,25 +1,8 @@
-<div class="posts-wrapper row">
-<div class="post">
-		<div class="post-head">
-			<div class="name"> John Barron 
-			</div>
-		</div>
-		
-		
-		<div class="image centre-block">
-			<%= image_tag @post.avatar.url(:medium), class:'img-responsive' %>
-		</div>
-		<p><%= @post.caption %></p>
-		
-		<div class="text-center edit-links">
+
+		<%= render(:partial => 'post', :locals => {:post => @post}) %>
+			<div class="text-center edit-links">
 			<%= link_to "Cancel", posts_path %>
-			||
-
-			<%= link_to "    Edit Post", edit_post_path(@post) %>
-
-			
-			 
+			<% if current_user.id == @post.user.id %>
+				<%= link_to "Edit Post", edit_post_path(@post) %>
+			<% end %>
 		</div>
-        
-	</div>
-</div>
