@@ -1,5 +1,12 @@
-<%= simple_form_for @post, url: posts_path do |form| %>
-  <%= form.input :image, as: :file %>
-  <%= form.input :caption%>
-  <%= form.button :submit%>
+<div class="form-wrapper">
+<%= simple_form_for @post,html: { class: 'form-horizontal',
+multipart: true }, url: posts_path do |form| %>
+  <%= render(:partial => 'form', :locals => {:form => form}) %>
+
+  
+
 <% end %>
+
+</div>
+
+

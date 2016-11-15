@@ -9,6 +9,14 @@
   </head>
 
   <body>
+  <div class="container">
+  <%= render(:partial => "layouts/navig")%>
+  <% flash.each do |name, msg| %>
+        <div class="notice">
+          <%= content_tag :div, msg, class: [:alert, alert_for(name)] %>
+        </div>
+  <% end %>
     <%= yield %>
+    </div>
   </body>
 </html>

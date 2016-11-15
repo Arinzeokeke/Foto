@@ -1,1 +1,18 @@
-<h1>Foto</h1>
+
+<div class="posts-wrapper row">
+	<% @posts.each do |post| %>
+	<div class="post">
+		<div class="post-head">
+			<div class="name"> Ada Okeke
+			</div>
+		</div>
+		
+		
+		<div class="image centre-block">
+			<%= link_to (image_tag post.avatar.url(:medium), class:'img-
+			responsive'), post_path(post) %>
+		</div>
+		<p><%= post.caption %></p>
+	</div>
+	<% end %>
+</div>
