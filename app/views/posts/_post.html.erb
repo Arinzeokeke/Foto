@@ -1,8 +1,12 @@
-<div class="posts-wrapper">
+<div class="posts-wra';/:ppedfytr">
 	<div class="post">
 		<div class="post-head">
 			<div class="thumb-img"></div>
 			<div class="user-name"> <%= post.user.user_name %>
+
+			</div>
+			<div class="time-ago">
+			<%= time_ago_in_words post.created_at %>
 			</div>
 		</div>
 		<div class="image centre-block">

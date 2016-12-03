@@ -1,2 +1,2 @@
 console.log("destroy");
-$('#comments_<%= @post.id %>').html(.html("<%= j render @post.comments, post: @post, comment: @comment %>"));
+$('#comments_<%= @post.id %>').html("<%= j render @post.comments, post: @post, comment: @comment %>");

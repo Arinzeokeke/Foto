@@ -2,10 +2,7 @@
 <%= simple_form_for @post, html: { class: 'form-horizontal',
 multipart: true }, url: post_path(@post.id) do |form| %>
 
-<div class="image centre-block">
-			<%= image_tag @post.avatar.url(:medium), class:'img-
-			responsive' %>
-		</div>
+ 
   <%= render(:partial => 'form', :locals => {:form => form}) %>
 
 <div class="text-center edit-links">
