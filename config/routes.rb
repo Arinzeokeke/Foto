@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'test/index'
+
+  get 'test/edit'
+
   get 'comments/index'
 
   get 'comments/edit'

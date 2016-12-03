@@ -9,8 +9,11 @@ class CommentsController < ApplicationController
   	@comment = @post.comments.build(comment_params)
 	@comment.user_id = current_user.id
 	if @comment.save
-		flash[:success] = "You commented the hell out of that post!"
-		redirect_to :back
+
+		respond_to do |format|
+      format.html { redirect_to root_path}
+      format.js
+    end
 	else
 		flash[:alert] = "Check the comment form, something went
 		horribly wrong."
@@ -23,8 +26,10 @@ class CommentsController < ApplicationController
 
   def destroy
   	@post.comments.find(params[:id]).destroy
-  	flash[:success] = "Comment deleted :("
-  	redirect_to root_path
+  	respond_to do |format|
+      format.html { redirect_to root_path}
+      format.js
+    end
   end
 
   private
