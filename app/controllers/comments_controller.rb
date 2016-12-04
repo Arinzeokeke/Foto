@@ -3,6 +3,10 @@ class CommentsController < ApplicationController
   before_action :set_post
 
   def index
+    @comments = @post.comments.order("created_at ASC")
+    respond_to do |format|
+      format.html { render layout: !request.xhr? }
+    end
   end
 
   def create

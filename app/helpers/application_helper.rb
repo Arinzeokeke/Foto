@@ -15,3 +15,7 @@ module ApplicationHelper
 			image_tag 'placeholder.jpg', id: 'image-preview', class: 'img-responsive'
 		end
 	end
+
+	def comments_display(comments)
+		
+	end
