@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-  	@comment = @post.comments.build(comment_params)
+  @comment = @post.comments.build(comment_params)
 	@comment.user_id = current_user.id
 	if @comment.save
 

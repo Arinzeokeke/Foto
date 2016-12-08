@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
 
-	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_action :set_post , only: [:show, :edit, :update, :destroy, :like]
 	before_action :authenticate_user!
 	before_action :owned_post, only: [:edit, :update, :destroy]
+	
 
 	def index
 		@posts = Post.all.order('created_at DESC').page params[:page]
@@ -28,6 +29,7 @@ class PostsController < ApplicationController
 		
 	end
 
+
 	def edit
 
 	end
@@ -48,8 +50,21 @@ class PostsController < ApplicationController
     	flash[:success] = "Your post has been deleted"
     	redirect_to  posts_path
     	else
+	end
 
-    end
+	def like
+		if current_user.voted_for? @post
+			@post.unliked_by current_user
+		else
+			@post.liked_by current_user
+		end
+		#puts "im here"
+
+		respond_to do |format|
+      		format.html { redirect_to :back}
+      		format.js
+    	end
+	end
 
 	private
 
@@ -59,6 +74,11 @@ class PostsController < ApplicationController
 
  	def set_post
  		@post = Post.find(params[:id])
+ 	end
+
+ 	def voter_list
+ 		@voters = @post.votes_for.voters
+
  	end
 
  	def owned_post

@@ -19,5 +19,24 @@ module ApplicationHelper
 			image_tag 'placeholder.jpg', id: 'image-preview', class: 'img-responsive'
 		end
 	end
+	 def list_likes(likers)
+    	res = "#{link_to likers[0].user_name, profile_path(likers[0].user_name)}"
+    	if likers.length > 1
+      		for i in 1..likers.length-2
+      			user = likers[i].user_name
+      			res += ", #{link_to likers[i].user_name, profile_path(likers[i].user_name)}"
+      			#link_to likers[i].user_name, profile_path(likers[i].user_name)
+      		end
+      		res += " and #{link_to likers[-1].user_name, profile_path(likers[-1].user_name)} "
+    	end
+    	if (likers.length > 1)
+    		res += " like this"
+    	else
+    		res += " likes this"
+    	end
+
+    	return res
+  	end
+
 
 

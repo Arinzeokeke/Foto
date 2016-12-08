@@ -1,4 +1,4 @@
-<div class="posts-wra';/:ppedfytr">
+<div class="posts-wrapper">
 	<div class="post">
 		<div class="post-head">
 			<div class="thumb-img"></div>
@@ -19,6 +19,9 @@
 				</div>
 				<%= post.caption %>
 			</div>
+				<%= render 'posts/likes', post: post %>
+			
+			
 			<div class = "comments" id = <%= "comments_#{post.id}"%>>
 			
 			<% if post.comments.any?%>
@@ -37,9 +40,14 @@
 		</div>
 
 		<div class="comment-like-form row">
-			<div class="like-button col-sm-1">
-				<span class = "glyphicon glyphicon-heart-empty"></span>
-			</div>
+			<div class="like-button col-sm-1 like-button">
+				
+			<%= link_to  like_post_path(post.id), method: :get,  remote: true do %>
+			<%= content_tag(:span, class: "like glyphicon #{liked_post(post)}", id: "like_#{post.id}") do %>
+			<% end %>						
+			<%end%>
+				</div>
+			
 			<div class="comment-form col-sm-11">
 				<%= form_for [post, post.comments.new], remote: true  do |f| %>
 					<%= f.text_field :content, placeholder: 'Add a comment...' , class: "comment_content", id: "comment_content_#{post.id}"%>
