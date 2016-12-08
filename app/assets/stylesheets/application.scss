@@ -251,3 +251,40 @@ color: red;
 text-decoration: none;
 color: red;
 }
+.notification-dropdown {
+margin-top: 10px;
+button {
+border: none;
+}
+}
+.notification-index-list {
+margin-top: 5em;
+list-style: none;
+li {
+margin-top: 1em;
+background-color: white;
+padding: 1em;
+}
+}
+.follow-button {
+text-transform: uppercase;
+border-color: #4090db;
+color: #4090db;
+margin-left: 20px;
+&:visited, &:focus, &:hover {
+border-color: #2D6396;
+color: #2D6396;
+}
+}
+.unfollow-button {
+text-transform: uppercase;
+border-color: #66bd2b;
+background-color: #66bd2b;
+color: white;
+margin-left: 20px;
+&:visited, &:focus, &:hover {
+border-color: #47821F;
+background-color: #47821F;
+color: white;
+}
+}

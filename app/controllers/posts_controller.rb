@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 	
 
 	def index
-		@posts = Post.all.order('created_at DESC').page params[:page]
+		@posts = Post.of_followed_users(current_user.following).order('created_at DESC').page params[:page]
 	end
 
 	def new
@@ -23,6 +23,10 @@ class PostsController < ApplicationController
 			Please check the form."
 			render :new
 		end
+	end
+
+	def browse
+		@posts = Post.all.order('created_at DESC').page params[:page]
 	end
 
 	def show
@@ -55,8 +59,11 @@ class PostsController < ApplicationController
 	def like
 		if current_user.voted_for? @post
 			@post.unliked_by current_user
+			delete_notification(@post)
 		else
 			@post.liked_by current_user
+			create_notification(@post)
+			
 		end
 		#puts "im here"
 
@@ -67,6 +74,19 @@ class PostsController < ApplicationController
 	end
 
 	private
+	def delete_notification(post)
+    	unless current_user.id == post.user_id
+      		notification = Notification.all.where(:notification_type => "like", :user_id => post.user_id, :op_user_id => current_user.id, :post_id => post.id)
+
+      		notification.last.destroy
+    end
+  end
+	def create_notification(post)
+    	unless current_user.id == post.user_id
+      		notification = Notification.new(:user_id => post.user_id, :op_user_id => current_user.id, :notification_type => "like", :post_id => post.id)
+      		notification.save
+    	end
+  	end
 
 	def post_params
 		params.require(:post).permit(:avatar, :caption)

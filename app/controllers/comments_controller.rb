@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
   @comment = @post.comments.build(comment_params)
 	@comment.user_id = current_user.id
 	if @comment.save
+    create_notification @post, @comment
 
 		respond_to do |format|
       format.html { redirect_to root_path}
@@ -45,4 +46,13 @@ class CommentsController < ApplicationController
  	def set_post
 		@post = Post.find(params[:post_id])
 	end
+
+  private
+  def create_notification(post, comment)
+    unless comment.user_id == post.user_id
+      notification = Notification.new(:user_id => post.user_id, :op_user_id => comment.user_id, :notification_type => "comment", :post_id => post.id, :comment_id => comment.id)
+      notification.save
+    end
+  end
+
 end

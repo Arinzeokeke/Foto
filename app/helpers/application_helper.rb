@@ -38,5 +38,14 @@ module ApplicationHelper
     	return res
   	end
 
+  	def notif_helper(notif)
+  		return "#{notif.op_user.user_name} commented on your post #{time_ago_in_words notif.post.created_at} ago" if notif.notification_type == "comment"
+  		"#{notif.op_user.user_name} liked your post #{time_ago_in_words notif.post.created_at} ago"
+  	end
+  	def current_user_is_following(curr_user, user)
+  		return Follow.all.where(:following_id => user, :follower_id => curr_user).length > 0
+  	end
+
+
 
 
