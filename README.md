@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Foto. An Instagram clone built on Rails
 
-Things you may want to cover:
+Features:
 
-* Ruby version
+* Post Pictures. (And All CRUD functionalities)
 
-* System dependencies
+* Like Pictures
 
-* Configuration
+* Receive Notifications
 
-* Database creation
+* Comment on Pictures
 
-* Database initialization
+* Follow/Unfollow other users
 
-* How to run the test suite
+Todo:
 
-* Services (job queues, cache servers, search engines, etc.)
+* Videos
 
-* Deployment instructions
+* More CSS styling
+* Pictre Filters
 
 * ...
